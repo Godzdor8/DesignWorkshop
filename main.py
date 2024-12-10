@@ -26,8 +26,8 @@ def draw_object_bounding_box(image_to_process, box, item):
     return final_image
 
 
-processor = DetrImageProcessor.from_pretrained("C:\\Users\Godzdor\Downloads", revision="no_timm")
-model = DetrForObjectDetection.from_pretrained("C:\\Users\Godzdor\Downloads", revision="no_timm")
+processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
+model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
 
 inputs = processor(images=image, return_tensors="pt")
 outputs = model(**inputs)
