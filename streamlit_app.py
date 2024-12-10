@@ -8,7 +8,7 @@ def func(picture):
     res = get_result(img1)
     for img, score, label in otrisovka(res):
         st.image(img)
-        st.text(f"Найден объект: {label} с уверенностью: {score}")
+        st.text(f"Найден объект: {label} с уверенностью: {round(score, 3)}")
 
 st.title('Нахождение объектов')
 
