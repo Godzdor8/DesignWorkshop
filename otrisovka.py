@@ -1,14 +1,9 @@
-import urllib
-import numpy as np
 from main import *
 
 
-def otrisovka(results):
+def otrisovka(results, img):
     _array = []
     for score, box, label in results:
-        req = urllib.request.urlopen(url)
-        arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-        img = cv2.imdecode(arr, -1)
         final_image = draw_object_bounding_box(img, box, label)
         _array.append((final_image, score, label))
     return _array
