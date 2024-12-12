@@ -12,6 +12,3 @@ def otrisovka(results):
         final_image = draw_object_bounding_box(img, box, label)
         _array.append((final_image, score, label))
     return _array
-    '''cv2.imshow("Object Detection", final_image)
-        cv2.waitKey(0)  # Ожидание любой клавиши
-        cv2.destroyAllWindows()'''

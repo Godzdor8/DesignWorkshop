@@ -29,16 +29,15 @@ def draw_object_bounding_box(image_to_process, box, item):
 processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
 model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
 
-inputs = processor(images=image, return_tensors="pt")
-outputs = model(**inputs)
-
-# конвертируем выходные данные (ограничивающие рамки и логиты классов)
-# оставим только обнаружения со счетом > 0,9
-target_sizes = torch.tensor([image.size[::-1]])
-results = processor.post_process_object_detection(outputs, target_sizes=target_sizes, threshold=0.9)[0]
-
 
 def get_result(image: Image):
+    inputs = processor(images=image, return_tensors="pt")
+    outputs = model(**inputs)
+    # конвертируем выходные данные (ограничивающие рамки и логиты классов)
+    # оставим только обнаружения со счетом > 0,9
+    target_sizes = torch.tensor([image.size[::-1]])
+    results = processor.post_process_object_detection(outputs, target_sizes=target_sizes, threshold=0.9)[0]
+
     _list = []
     for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
         box = [round(i, 2) for i in box.tolist()]
