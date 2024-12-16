@@ -7,4 +7,4 @@ def test_empty():
 
 def test_picture():
     res = get_result(cv2.imread('pictures/image 1.jpg'))
-    assert res > 0.9
+    assert res[0][0] > 0.9
